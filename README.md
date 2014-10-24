@@ -9,7 +9,7 @@ A set of code examples for interfacing with the Data Connections (Partner) API
 * This code uses a REST-ful interface for the Data Connectors API -- however SOAP can also be used in most cases
 * This code is currently provided in 3 languages -- PHP, C# , Java
 * This API uses a WSSE authentication header on every call, each example class has a method called getWSSEHeader for this purpose
-  * The code examples can not be run without Partner API credentials (a Username and Secret). These must be obtain through an Adobe Partner Integration Manager after appropriate agreements are in place.
+  * The code examples can not be run without Partner API credentials (a Username and Secret). These must be obtained through an Adobe Partner Integration Manager after appropriate agreements are in place.
 * Each example passes JSON encoded data as a String and received JSON encoded data as a String
   * parsing the JSON data is left as an exercise for the developer so you can choose your favorite JSON library
 
