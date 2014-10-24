@@ -1,7 +1,7 @@
 import net.sf.json.JSONObject;
 
 
-public class Main {
+public class RequestSegments {
 
 	public static void main(String[] args) {
 
@@ -11,7 +11,7 @@ public class Main {
 		// *** The username and secret can be obtained through your Adobe Partner Integrations contact ***
 		AdobeMarketingCloudPartnerAPI client = new AdobeMarketingCloudPartnerAPI("USERNAME", "PASSWORD");
 		
-		 /*	Format the upload data in the format as give here - https://marketing.adobe.com/developer/en_US/documentation/genesis/r-uploadclassifications
+		 /*	Format the upload data in the format as give here - https://marketing.adobe.com/developer/en_US/documentation/genesis/r-requestsegmenteddata
 		 	The original formating of the data below is:
 				
 				  { 
@@ -41,8 +41,7 @@ public class Main {
 				// *** Use method callPost for using Export.RequestSegementedData ***
 				String jsonResponse = client.callPOST(urlname, postData);
 				
-				// Capture the requestId for use in Export.CheckDataRequest method
-				//System.out.println("Response: "+jsonResponse);
+				// *** Capture the requestId for use in Export.CheckDataRequest method ***
 				JSONObject json = JSONObject.fromObject(jsonResponse);
 				String requestId = json.get("requestId").toString();
 				
@@ -63,7 +62,7 @@ public class Main {
 		
 				if (json.get("data_url").toString() != null){
 					String segmentedDataURL = json.get("data_url").toString();
-					System.out.println(segmentedDataURL);
+					System.out.println("/n"+"Segmented Data URL: "+segmentedDataURL);
 					} else {
 						
 						System.out.println("URL not available");

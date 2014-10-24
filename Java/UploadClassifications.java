@@ -1,9 +1,9 @@
 
-public class Main {
+public class UploadClassifications {
 
 	public static void main(String[] args) {
-	// TODO Auto-generated method stub
 
+		// *** Initialize with the URL
 		String urlname = "https://api.omniture.com/genesis/rest/3.1/index.html?method=Import.UploadClassifications";
 		
 		// *** The username and secret can be obtained through your Adobe Partner Integrations contact ***
@@ -37,10 +37,10 @@ public class Main {
 							+ "],"
 				+ "\"endOfBlock\":\"1\"}";
 		
-		// Use method callPost for using Import.UploadClassifications
+		// *** Use method callPOST with URL and post data as arguments ***
 		String jsonResponse = client.callPOST(urlname, postData);
 		
-		// Capture the fileID for future use e.g. for Import.CheckClassificationUpload method
+		// *** Capture the fileID for future use e.g. for Import.CheckClassificationUpload method ***
 		System.out.println("Response: "+jsonResponse);
 		
 	}

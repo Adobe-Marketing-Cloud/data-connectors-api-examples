@@ -18,28 +18,31 @@ public class AdobeMarketingCloudPartnerAPI {
 
 	String USERNAME = null;
 	String SECRET = null;
+	
+	// *** Constructor with username and password initialized ***
 	public AdobeMarketingCloudPartnerAPI(String username, String secret) {
 		
 		this.USERNAME = username;
 		this.SECRET = secret;
 		
 	}
-
+	
+	// *** The method getWSSEHeader generates WSSEHeader information for use in callPOST and callGET methods ***
 	public String getWSSEHeader() throws NoSuchAlgorithmException{
 		String WSSEHeader = null;
 		
-		// produce a time stamp
+		// *** produce a time stamp
 		SimpleDateFormat createdat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 		createdat.setTimeZone(TimeZone.getTimeZone("GMT"));
 		String timestamp = createdat.format(Calendar.getInstance().getTime()).trim();
 		
-		// create a random number for nonce
+		// *** create a random number for nonce
 		String rand = Long.toString(new Date().getTime());
 		
-		// Base64 the random number to create a nonce
+		// *** Base64 the random number to create a nonce
 		String nonce = Base64.encodeBase64String(rand.getBytes()).trim();
 		
-		// Create a password digest from Timestamp, random number and Secret
+		// *** Create a password digest from Timestamp, random number and Secret
 		MessageDigest md = MessageDigest.getInstance("SHA-1");
 		md.reset();
 		md.update(rand.getBytes());
@@ -47,13 +50,14 @@ public class AdobeMarketingCloudPartnerAPI {
 		md.update(SECRET.getBytes());
 		String passwordDigest = Base64.encodeBase64String(md.digest()).trim();
 		
-		// Create WSSE Header
+		// *** Create WSSE Header
 		WSSEHeader = "UsernameToken Username=\""+USERNAME.trim()+"\", "+"PasswordDigest=\""+passwordDigest+"\", "+"Nonce=\""+nonce+"\", "+"Created=\""+timestamp+"\"";
 		WSSEHeader = WSSEHeader.replace("\n", "");
 		
 		return WSSEHeader;
 	}
 	
+	// *** Method to call a HTTP GET method. Accepts String URL as an argument ***
 	public String callGET(String urlname){ 
 		
 		String jsonResponse = null;
@@ -81,7 +85,7 @@ public class AdobeMarketingCloudPartnerAPI {
 		return jsonResponse;
 	}
 	
-	
+	// *** Method to call a HTTP POST method. Accepts String URL and JSON formatted post data as an argument ***
 	public String callPOST(String urlname,String postData){  
 		
 		String jsonResponse=null;
