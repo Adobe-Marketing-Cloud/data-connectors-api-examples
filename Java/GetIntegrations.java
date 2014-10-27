@@ -17,17 +17,14 @@ public class GetIntegrations {
 		// *** The username and secret can be obtained through your Adobe Partner Integrations contact ***
 		AdobeMarketingCloudPartnerAPI client = new AdobeMarketingCloudPartnerAPI("USERNAME", "PASSWORD");
 		
-		// Call the callGET method without argument
+		// *** Call the callGET method without Filter ***
+		String getresponse1 = client.callGET("https://api.omniture.com/genesis/rest/3.1/index.html?method=Partner.GetIntegrations");
 		
-		String getresponse1 = client.callGET("https://api.omniture.com/genesis/rest/3.1/index.html?method=Partner.GetIntegrations
-		
-		// Call the callGet function with argument as non URL encoded URL string
+		// *** Call the callGET function with filter as URL query string parameter ***
 		String getresponse2 = client.callGET("https://api.omniture.com/genesis/rest/3.1/index.html?method=Partner.GetIntegrations&filter=integrationCode=\"aebd07c1b76e505e\"");
 
-		// Call the call callPost function with argument as non url encoded URL String and JSON formatted postdata string
-
+		// *** Call the callPOST function with filter as JSON formatted postdata string ***
 		String postdata = "{ \"filter\":\"integrationCode='8a4b8b735cb2f696'\"}";
-		
 		String postresponse = client.callPOST("https://api.omniture.com/genesis/rest/3.1/index.html?method=Partner.GetIntegrations", postdata);
 	
 		System.out.println("******* RESPONSE FROM GET CALL WIHOUT FILTER ********");
