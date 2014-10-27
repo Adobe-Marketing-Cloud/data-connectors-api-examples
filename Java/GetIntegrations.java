@@ -9,36 +9,32 @@ import net.sf.json.JSONObject;
 
 
 
-public class Main {
+public class GetIntegrations {
 
 	public static void main(String[] args) {
 	// TODO Auto-generated method stub
 
-		// Initialize with Username and Shared secret
-		AdobeMarketingPartnerAPI client = new AdobeMarketingPartnerAPI("USERNAME", "PASSWORD");
+		// *** Replace the "USERNAME" and "PASSWORD" with your Adobe Partner API Username and Shared Secret respectively ***
+		AdobeMarketingCloudPartnerAPI client = new AdobeMarketingCloudPartnerAPI("USERNAME", "PASSWORD");
 		
-		// Call the callGet function with argument as non URL encoded URL string
-		String getresponse = client.callGet("https://api.omniture.com/genesis/rest/3.1/index.html?method=Partner.GetIntegrations&filter=integrationCode=\"aebd07c1b76e505e\"");
+		// *** Call the callGET method without Filter ***
+		String getresponse1 = client.callGET("https://api.omniture.com/genesis/rest/3.1/index.html?method=Partner.GetIntegrations");
+		
+		// *** Call the callGET function with filter as URL query string parameter ***
+		String getresponse2 = client.callGET("https://api.omniture.com/genesis/rest/3.1/index.html?method=Partner.GetIntegrations&filter=integrationCode=\"aebd07c1b76e505e\"");
 
-		// Call the call callPost function with argument as non url encoded URL String and JSON formated postdata string
-		Map<String, String> input = new HashMap<String, String>();
-		input.put("filter", "integrationCode='aebd07c1b76e505e'");
-		System.out.println(JSONObject.fromObject(input).toString());
-		// change it to string.. 
-		
-		
-		String postdata = JSONObject.fromObject(input).toString();
-		String postresponse = client.callPost("https://api.omniture.com/genesis/rest/3.1/index.html?method=Partner.GetIntegrations", postdata);
+		// *** Call the callPOST function with filter as JSON formatted postdata string ***
+		String postdata = "{ \"filter\":\"integrationCode='8a4b8b735cb2f696'\"}";
+		String postresponse = client.callPOST("https://api.omniture.com/genesis/rest/3.1/index.html?method=Partner.GetIntegrations", postdata);
 	
-		//Testing
-		System.out.println("GET RESPONSE: "+getresponse);
-		System.out.println("POST RESPONSE: "+postresponse);
+		System.out.println("******* RESPONSE FROM GET CALL WIHOUT FILTER ********");
+		System.out.println(getresponse1+"/n");
+		System.out.println("******* RESPONSE FROM GET CALL WITH FILTER ********");
+		System.out.println(getresponse2+"/n");
+		System.out.println("******* RESPONSE FROM POST CALL WITH FILTER ********");
+		System.out.println(postresponse+"/n");
 		
-		System.out.println("Parsed Response from GET Call: ");
-		client.responseParser(getresponse);
-		
-		System.out.println("Parsed Response from POST Call: ");
-		client.responseParser(postresponse);
+
 		
 
 	}
