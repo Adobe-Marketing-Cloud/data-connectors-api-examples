@@ -6,11 +6,11 @@ public class UploadClassifications {
 		// *** Initialize with the URL
 		String urlname = "https://api.omniture.com/genesis/rest/3.1/index.html?method=Import.UploadClassifications";
 		
-		// *** The username and secret can be obtained through your Adobe Partner Integrations contact ***
+		// *** Replace the "USERNAME" and "PASSWORD" with your Adobe Partner API Username and Shared Secret respectively ***
 		AdobeMarketingPartnerAPI client = new AdobeMarketingPartnerAPI("USERNAME", "PASSWORD");
 
 		/* Format the upload data in the format as give here - https://marketing.adobe.com/developer/en_US/documentation/genesis/r-uploadclassifications
-		 * The original formating of the data below is:
+		 * The original formatting of the data below is:
 		 *
 		 * {
 			"integrationCode":"8a4b8b735cb2f696",

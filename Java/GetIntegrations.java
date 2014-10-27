@@ -14,7 +14,7 @@ public class GetIntegrations {
 	public static void main(String[] args) {
 	// TODO Auto-generated method stub
 
-		// *** The username and secret can be obtained through your Adobe Partner Integrations contact ***
+		// *** Replace the "USERNAME" and "PASSWORD" with your Adobe Partner API Username and Shared Secret respectively ***
 		AdobeMarketingCloudPartnerAPI client = new AdobeMarketingCloudPartnerAPI("USERNAME", "PASSWORD");
 		
 		// *** Call the callGET method without Filter ***
