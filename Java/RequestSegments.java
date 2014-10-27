@@ -1,18 +1,18 @@
 import net.sf.json.JSONObject;
 
 
-public class Main {
+public class RequestSegments {
 
 	public static void main(String[] args) {
 
 		// *** Compose the URL to call ReguestSegmentedData method ***
 		String urlname = "https://api.omniture.com/genesis/rest/3.1/index.html?method=Export.RequestSegmentedData";
 		
-		// *** The username and secret can be obtained through your Adobe Partner Integrations contact ***
+		// *** Replace the "USERNAME" and "PASSWORD" with your Adobe Partner API Username and Shared Secret respectively ***
 		AdobeMarketingCloudPartnerAPI client = new AdobeMarketingCloudPartnerAPI("USERNAME", "PASSWORD");
 		
-		 /*	Format the upload data in the format as give here - https://marketing.adobe.com/developer/en_US/documentation/genesis/r-uploadclassifications
-		 	The original formating of the data below is:
+		 /*	Format the upload data in the format as give here - https://marketing.adobe.com/developer/en_US/documentation/genesis/r-requestsegmenteddata
+		 	The original formatting of the data below is:
 				
 				  { 
 					"integrationCode":"8a4b8b735cb2f696",
@@ -41,12 +41,11 @@ public class Main {
 				// *** Use method callPost for using Export.RequestSegementedData ***
 				String jsonResponse = client.callPOST(urlname, postData);
 				
-				// Capture the requestId for use in Export.CheckDataRequest method
-				//System.out.println("Response: "+jsonResponse);
+				// *** Capture the requestId for use in Export.CheckDataRequest method ***
 				JSONObject json = JSONObject.fromObject(jsonResponse);
 				String requestId = json.get("requestId").toString();
 				
-				// loop the call to CheckDataRequest method until the status is 2
+				// *** Loop the call to CheckDataRequest method until the status is 2. When "2", it displays the data url. ***
 				
 				do {
 					try {
@@ -63,7 +62,7 @@ public class Main {
 		
 				if (json.get("data_url").toString() != null){
 					String segmentedDataURL = json.get("data_url").toString();
-					System.out.println(segmentedDataURL);
+					System.out.println("/n"+"Segmented Data URL: "+segmentedDataURL);
 					} else {
 						
 						System.out.println("URL not available");
