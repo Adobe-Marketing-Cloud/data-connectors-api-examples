@@ -5,10 +5,21 @@ This sample code is a basic use-case example of :
 * Uploading Classifications to a particular integration
 * Downloading Segmented Data from a particular integration
 
-###Use Case 1: Getting a list of integrations:
 
-*This will require Two java files i) GetIntegrations.java ii) AdobeMarketingCloudPartnerAPI.java*
-1. Open the GetIntegrations.java. This has the main method.
-2. Fill in your Partner Username and Shared Secret in place of "USERNAME" and "PASSWORD" respectively
-3. This example shows two way to get the list i) by HTTP GET method ii) by HTTP POST method
-4. Both the GET and POST methods can be passed with filters as arguments
+### Getting a list of active customer integrations
+
+
+
+
+
+----------
+**NOTE**:You need your Adobe Partner API Username and shared secret to run this code.
+You also need to have a Adobe Analytics company with a valid report suite and atleast one Data Connector integration.
+
+1. This example uses two files i) `AdobeMarketingCloudPartnerAPI.java` ii) `GetIntegrations.java` 
+2. Replace your Username and Shared Secret as commented in GetIntegrations.java. This file has the main method.
+3. This example shows the use of `HTTP GET` and `HTTP POST` methods to use `GetIntegrations` call
+4. The example covers the use case of using a filter to get integration details of a specific integration:
+                    ```String postdata = "{ \"filter\":\"integrationCode='8a4b8b735cb2f696'\"}";```
+5. Please do replace the above filter with the integrationCode applicable to yours.
+6. For more details on Partner.GetIntegrations method, visit --> [https://marketing.adobe.com/developer/en_US/documentation/genesis/r-getintegrations](https://marketing.adobe.com/developer/en_US/documentation/genesis/r-getintegrations)
